@@ -106,7 +106,7 @@ namespace ConsoleApp2
                 int option = int.Parse(Console.ReadLine());
 
 
-             
+
 
                 switch (option)
                 {
@@ -128,7 +128,7 @@ namespace ConsoleApp2
 
                     case 2:
                         //input 
-                        Console.Write("Enter account number: ");    
+                        Console.Write("Enter account number: ");
                         string accNumber = Console.ReadLine();
                         Console.Write("Enter deposit amount: ");
                         double depositAmount = double.Parse(Console.ReadLine());
@@ -142,7 +142,7 @@ namespace ConsoleApp2
                             if (accNumber == accounts[i])
                             {
                                 balances[i] += depositAmount;
-                               
+
                                 accountFound = true;
                                 break;
                             }
@@ -172,17 +172,181 @@ namespace ConsoleApp2
 
 
 
+                        // same as deposit money with minor changes ( inplace of += use -= and check for sufficient balance before withdrawal )
+
+                        //input 
+                        Console.Write("Enter account number: ");
+                        string accountNumber = Console.ReadLine();
+                        Console.Write("Enter withdraw amount: ");
+                        double WithdrawAmount = double.Parse(Console.ReadLine());
 
 
+                        //processing
+                        bool accFounded = false;
 
+                        for (int i = 0; i < 100; i++)
+                        {
+                            if (accountNumber == accounts[i])
+                            {
+                                accountFound = true;
+
+                                if (balances[i] >= WithdrawAmount)
+                                {
+                                    balances[i] -= WithdrawAmount;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("sorry Insufficient balance");
+                             
+                                }
+
+
+                            
+                                break;
+                            }
+
+                        }
+
+                        //output
+                        if (accFounded == false)
+                        {
+                            Console.WriteLine("sorry account not found");
+                        }
+                        else
+                        {
+                            Console.WriteLine("withdraw successful!");
+                            //send sms or email notification
+
+                        }
 
 
 
 
                         break;
+
+
+
                     case 4:
-                        break;
+
+                        //variables naming conditions in C#:
+                        // - meaningful names
+                        // - camelCase for local variables and method parameters
+                        // - must not start with number example: 1stAccount XXXX  FistAccount  OK  area5 ok
+                        // - no spaces allowed, use _ or camelCase
+                        //- no special characters allowed except _  account# XXXX   account-number  xxxx  account_number ok
+                        // - avoid reserved keywords  int, string, class, namespace, void, public, private, static, internal, etc.  XXXX
+                        // - case sensitive   accountNumber  and  accountnumber  are different
+
+
+                        Console.Write("Enter account number: ");
+                        string accNum = Console.ReadLine();
+
+
+                        // searching block of code
+                        bool isAccountFound = false;
+                        double currentBalamce = 0;
+                        for (int i = 0; i < 100; i++)
+                        {
+
+                            if (accNum == accounts[i])
+                            {
+                                currentBalamce = balances[i];
+                                isAccountFound = true;
+                                break;
+                            }
+
+                        }
+
+                        if (isAccountFound == false)
+                        {
+                            Console.WriteLine("sorry account not found");
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("Your balance = " + currentBalamce);
+                        }
+                
+                            //end searching block of code
+
+
+
+                            break;
+
+
+
                     case 5:
+
+                        Console.Write("Enter source account number: ");
+                        string sourceAccNum = Console.ReadLine();
+                        Console.Write("Enter destination account number: ");
+                        string destAccNum = Console.ReadLine();
+                        Console.Write("Enter transfer amount: ");
+                        double transferAmount = double.Parse(Console.ReadLine());
+
+                        //processing
+                        bool sourceFound = false;
+                        int sourceBalance = 0;
+
+                        for (int i=0; i<100; i++)
+                        { 
+                           if(sourceAccNum == accounts[i])
+                            {
+                                sourceBalance = i;
+                                sourceFound = true;
+                                break;
+                            }
+                        }
+
+                        if (sourceFound == false)
+                        {
+                            Console.WriteLine("source account not found");
+
+                        }
+                        else // source found and proceed to find destination account
+                        {
+
+                            bool desrinationFound = false;
+                            int destinationBalance = 0;
+                            for (int i = 0; i < 100; i++)
+                            {
+                                if (destAccNum == accounts[i])
+                                {
+                                    destinationBalance = i;   
+                                    desrinationFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (desrinationFound == false)
+                            {
+                                Console.WriteLine("destination account not found");
+
+                            }
+
+                            else // destination found and proceed to transfer money
+                            {
+
+                                if (balances[sourceBalance] <= transferAmount)
+                                {
+                                    balances[sourceBalance] -= transferAmount;
+                                    balances[destinationBalance] += transferAmount;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Insufficient balance in source account");
+                                }
+
+                            }
+
+
+                        }
+
+
+
+
+
+
                         break;
 
                     case 6: //done
