@@ -30,7 +30,45 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
 
-            //write your code here  
+            //write your code here in main method
+
+            //-------------------------------------------------
+            //if program has data storage,
+            //  - load data from permanent storage
+            //  - seed data if required
+
+
+            //--application loop ------------------------------
+
+         //   while ( true )
+       //     {
+
+                //print welcome message and menu options
+
+
+                //switch case from input of menu options
+                //Case option1 : example ( 1, A, create account )
+                // EACH CASE WILL HAVE : INPUT, PROCESSING, OUTPUT PHASES
+
+
+                //In case of exit option from menu
+                // assign bool flag to true
+                // check bool flag and exit loop    
+                // break; // to exit the infinite loop
+
+
+                //print thank you message and wait for key press
+                //clear console screen
+                //repeat loop
+
+
+
+           // }
+
+
+
+
+
             //Bank system example: including ( create account, deposit money, withdraw money, check balance, transfer money )
 
             //Phase1: system storage
@@ -49,9 +87,11 @@ namespace ConsoleApp2
             accounts[1] = "ACC1";
             balances[1] = 500;
             LastAccountIndex++;
-             
 
             //permenant stroage : database, file system
+
+
+            bool exit = false;
 
             while (true)
             {
@@ -65,9 +105,12 @@ namespace ConsoleApp2
                 Console.Write("Please select an option: ");
                 int option = int.Parse(Console.ReadLine());
 
+
+             
+
                 switch (option)
                 {
-                    case 1:
+                    case 1: //done
                         //Phase2: input &  //Phase3: processing
                         Console.Write("Enter your name: ");
                         owners[LastAccountIndex + 1] = Console.ReadLine();
@@ -84,23 +127,79 @@ namespace ConsoleApp2
 
 
                     case 2:
+                        //input 
+                        Console.Write("Enter account number: ");    
+                        string accNumber = Console.ReadLine();
+                        Console.Write("Enter deposit amount: ");
+                        double depositAmount = double.Parse(Console.ReadLine());
+
+
+                        //processing
+                        bool accountFound = false;
+
+                        for (int i = 0; i < 100; i++)
+                        {
+                            if (accNumber == accounts[i])
+                            {
+                                balances[i] += depositAmount;
+                               
+                                accountFound = true;
+                                break;
+                            }
+
+                        }
+
+                        //output
+                        if (accountFound == false)
+                        {
+                            Console.WriteLine("sorry account not found");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Deposit successful!");
+                            //send sms or email notification
+
+                        }
+
+
+
                         break;
 
 
 
                     case 3:
+
+
+
+
+
+
+
+
+
+
+
                         break;
                     case 4:
                         break;
                     case 5:
                         break;
 
-                    case 6:
+                    case 6: //done
+                        exit = true;
                         break;
 
                     default:
                         break;
                 }
+
+
+
+                if(exit == true)
+                {
+                    break;
+                }
+                
 
                 Console.WriteLine("Thank you for using the Bank System, press any key");
                 Console.ReadLine();
@@ -109,6 +208,10 @@ namespace ConsoleApp2
 
                
             }
+
+
+
+
 
        
 
