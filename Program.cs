@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp2
+namespace ConsoleApp2
 {
 
     /*
@@ -38,6 +38,20 @@
             string[] accounts = new string[100]; //100 accounts
             double[] balances = new double[100];      //account balances
             int LastAccountIndex = -1; // no account created yet
+
+            //seed data
+            owners[0] = "Alice";
+            accounts[0] = "ACC0";
+            balances[0] = 1000;
+            LastAccountIndex++;
+
+            owners[1] = "Bob";
+            accounts[1] = "ACC1";
+            balances[1] = 500;
+            LastAccountIndex++;
+             
+
+            //permenant stroage : database, file system
 
             while (true)
             {
@@ -92,10 +106,14 @@
                 Console.ReadLine();
                 Console.Clear();
 
+
+               
             }
 
+       
 
         }
+
     }
 
 
